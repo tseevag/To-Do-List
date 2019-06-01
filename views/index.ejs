@@ -1,0 +1,36 @@
+<%- include("header") -%>
+
+<div class="box" id="heading">
+    <h1> <%= day %> </h1>
+</div>
+
+<div class="box">
+    <div class="info item">
+        <p>Your list</p>
+        <button >+</button>
+    </div>
+    
+    <form class="input-box item" action="/new-list" method="post" <% if(lists.length !== 0 ) { %> hidden <% } %> > <!-- dont hide if empty -->
+        <input type="text" name="newList" placeholder="Name of list" autocomplete="off">
+        <div class="btn"  onclick="document.querySelector('form.input-box').submit();"><p>Create</p></div>
+    </form>
+    
+    <% lists.forEach((list)=>{  %>
+        <a class="item" href="/lists/<%= list.name %>"><p><%=  list.name  %></p></a>
+
+    <% });  %>
+</div>
+
+
+<ul class="contextmenu" hidden>
+    <li>
+        <a >Open</a>
+    </li>
+    <hr>
+    <li>
+        <a >Delete</a>
+    </li>
+</ul>   
+
+<script src="/javascript/index.js"></script>
+<%- include("footer") -%>
